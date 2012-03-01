@@ -49,7 +49,7 @@
 	}
 
 	function dispatch(type, target) {
-		var event = document.createEvent("Event");
+		var event = doc.createEvent("Event");
 		event.initEvent(type, true, false);
 		target.dispatchEvent(event);
 	} // end of dispatch()
