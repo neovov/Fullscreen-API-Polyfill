@@ -1,4 +1,4 @@
-= W3C's Fullscreen API Polyfill =
+# W3C's Fullscreen API Polyfill #
 
 This little script ease the way to use the fullscreen API. As you know, vendors are currently implementing this API so every methods, properties and events are prefixed. This script will detect the API (maybe an already compliant browser? Webkit? Moz?) and if it's not the W3C one, it will wrap those methods, properties and events to match the W3C one.
 
@@ -15,6 +15,7 @@ Maybe an example will be clearer:
 		}
 	}, false);
 
+
 	(with this polyfill)
 	btn.addEventListener("click", function() {
 		// Use the final API, the polyfill will call the mozRequestFullScreen of webKitRequestFullScreen for you
@@ -23,20 +24,21 @@ Maybe an example will be clearer:
 
 Remember this script is just a shorthand for the currently implemented API. This API may change and you'll have to update this script (if I don't ;-) ).
 
-= Supported "features" =
+# Supported "features" #
+
 Note that this script does only wrap the existing methods, it will not simulate a fullscreen.
 
- * Methods wrapper (`requestFullscreen`, `exitFullscreen`)
- * Properties wrapper (`fullscreenEnabled`, `fullscreenElement`)
- * Events propagation (`fullscreenchange`, `fullscreenerror`)
+ * Methods wrapper for `requestFullscreen` and `exitFullscreen`
+ * Properties wrapper for `fullscreenEnabled` and `fullscreenElement`
+ * Events propagation for `fullscreenchange` and `fullscreenerror`
  * You can easily change the vendor's API (if they change a method, property or event name)
- * You can choose to "pollute" the DOM by making these wrappers or don't "pollute" and get the API available in the browser (or undefined if unavailable)
+ * You can choose to "pollute" the DOM by making these wrappers or don't "pollute" and get the API available in the browser (or `undefined` if unavailable)
 
-Calling `element.requestFullscreen` will call the correct method (`requestFullscreen`, `mozRequestFullScreen`, `webkitRequestFullScreen`).
-Calling `document.exitFullscreen` will call the correct method (`exitFullscreen`, `mozCancelFullScreen`, `webkitCancelFullScreen`).
+Calling `element.requestFullscreen` will call the correct method (`requestFullscreen`, `mozRequestFullScreen` or `webkitRequestFullScreen`).  
+Calling `document.exitFullscreen` will call the correct method (`exitFullscreen`, `mozCancelFullScreen` or `webkitCancelFullScreen`).
 
-The `document.fullscreenEnabled` property will be a reference of the vendor's property (`document.exitFullscreen`, `document.mozFullScreen`, `document.webkitIsFullScreen`).
-The `document.fullscreenElement` property will be a reference of the vendor's property (`document.fullscreenElement`, `document.mozFullScreenElement`, `document.webkitCurrentFullScreenElement`).
+The `document.fullscreenEnabled` property will be a reference of the vendor's property (`document.exitFullscreen`, `document.mozFullScreen`or `document.webkitIsFullScreen`).  
+The `document.fullscreenElement` property will be a reference of the vendor's property (`document.fullscreenElement`, `document.mozFullScreenElement` or `document.webkitCurrentFullScreenElement`).
 
-The event `fullscreenchange` (dispatched on the `document`) will be triggered directly by the browser or by an intermediate listener (on `mozfullscreenchange` or `webkitfullscreenchange`).
-The event `fullscreenerror` (dispatched on the `document`) will be triggered directly by the browser or by an intermediate listener (on `mozfullscreenerror` or `webkitfullscreenerror`).
+The `fullscreenchange` event (dispatched on the `document`) will be triggered directly by the browser or by an intermediate listener (on `mozfullscreenchange` or `webkitfullscreenchange`).  
+The `fullscreenerror` event (dispatched on the `document`) will be triggered directly by the browser or by an intermediate listener (on `mozfullscreenerror` or `webkitfullscreenerror`).
