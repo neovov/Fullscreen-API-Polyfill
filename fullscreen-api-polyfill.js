@@ -1,38 +1,41 @@
-(function(doc) {
+/*jslint browser:true*/
+/*global Element*/
+(function (doc) {
+	'use strict';
 
-	var
-		pollute = true,
-		api, vendor,
+	var pollute = true,
+		api,
+		vendor,
 		apis = {
 			// http://dvcs.w3.org/hg/fullscreen/raw-file/tip/Overview.html
 			w3: {
-				enabled: "fullscreenEnabled",
-				element: "fullscreenElement",
-				request: "requestFullscreen",
-				exit:    "exitFullscreen",
+				enabled: 'fullscreenEnabled',
+				element: 'fullscreenElement',
+				request: 'requestFullscreen',
+				exit:    'exitFullscreen',
 				events: {
-					change: "fullscreenchange",
-					error:  "fullscreenerror"
+					change: 'fullscreenchange',
+					error:  'fullscreenerror'
 				}
 			},
 			webkit: {
-				enabled: "webkitIsFullScreen",
-				element: "webkitCurrentFullScreenElement",
-				request: "webkitRequestFullScreen",
-				exit:    "webkitCancelFullScreen",
+				enabled: 'webkitIsFullScreen',
+				element: 'webkitCurrentFullScreenElement',
+				request: 'webkitRequestFullScreen',
+				exit:    'webkitCancelFullScreen',
 				events: {
-					change: "webkitfullscreenchange",
-					error:  "webkitfullscreenerror"
+					change: 'webkitfullscreenchange',
+					error:  'webkitfullscreenerror'
 				}
 			},
 			moz: {
-				enabled: "mozFullScreen",
-				element: "mozFullScreenElement",
-				request: "mozRequestFullScreen",
-				exit:    "mozCancelFullScreen",
+				enabled: 'mozFullScreen',
+				element: 'mozFullScreenElement',
+				request: 'mozRequestFullScreen',
+				exit:    'mozCancelFullScreen',
 				events: {
-					change: "mozfullscreenchange",
-					error:  "mozfullscreenerror"
+					change: 'mozfullscreenchange',
+					error:  'mozfullscreenerror'
 				}
 			}
 		},
@@ -40,16 +43,19 @@
 
 	// Loop through each vendor's specific API
 	for (vendor in apis) {
-		// Check if document has the "enabled" property
-		if (apis[vendor].enabled in doc) {
-			// It seems this browser support the fullscreen API
-			api = apis[vendor];
-			break;
+		if (apis.hasOwnProperty(vendor)) {
+			// Check if document has the "enabled" property
+			if (doc.hasOwnProperty(apis[vendor].enabled)) {
+				// It seems this browser support the fullscreen API
+				api = apis[vendor];
+				break;
+			}
 		}
 	}
 
 	function dispatch(type, target) {
-		var event = doc.createEvent("Event");
+		var event = doc.createEvent('Event');
+
 		event.initEvent(type, true, false);
 		target.dispatchEvent(event);
 	} // end of dispatch()
@@ -66,7 +72,7 @@
 		dispatch(w3.events.error, e.target);
 	} // end of handleError()
 
-	if (pollute && api && vendor !== "w3") {
+	if (pollute && api && vendor !== 'w3') {
 		// Add listeners for fullscreen events
 		doc.addEventListener(api.events.change, handleChange, false);
 		doc.addEventListener(api.events.error,  handleError,  false);
@@ -79,7 +85,7 @@
 		doc[w3.exit] = doc[api.exit];
 
 		// Add the request method to the Element's prototype
-		Element.prototype[w3.request] = function() {
+		Element.prototype[w3.request] = function () {
 			return this[api.request].apply(this, arguments);
 		};
 	}
