@@ -71,7 +71,8 @@
 		dispatch( w3.events.error, e.target );
 	} // end of handleError()
 
-	if (pollute && api && vendor !== "w3") {
+	// Pollute only if the API doesn't already exists
+	if (pollute && !(w3.enabled in doc) && api) {
 		// Add listeners for fullscreen events
 		doc.addEventListener( api.events.change, handleChange, false );
 		doc.addEventListener( api.events.error,  handleError,  false );
