@@ -38,6 +38,16 @@
 					change: "mozfullscreenchange",
 					error:  "mozfullscreenerror"
 				}
+			},
+			ms: {
+				enabled: "msFullscreenEnabled",
+				element: "msFullscreenElement",
+				request: "msRequestFullscreen",
+				exit:    "msExitFullscreen",
+				events: {
+					change: "MSFullscreenChange",
+					error:  "MSFullscreenError"
+				}
 			}
 		},
 		w3 = apis.w3;
