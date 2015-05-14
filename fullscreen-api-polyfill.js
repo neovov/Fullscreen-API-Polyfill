@@ -30,7 +30,7 @@
 				}
 			},
 			moz: {
-				enabled: "mozFullScreen",
+				enabled: "mozFullScreenEnabled",
 				element: "mozFullScreenElement",
 				request: "mozRequestFullScreen",
 				exit:    "mozCancelFullScreen",
