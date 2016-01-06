@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "W3C's Fullscreen API Polyfill",
   "main": "fullscreen-api-polyfill.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://neovov@github.com/neovov/Fullscreen-API-Polyfill.git"
@@ -15,7 +12,7 @@
     "polyfill",
     "w3c"
   ],
-  "author": "Nicolas Le Gall",
+  "author": "Nicolas Le Gall <me@neovov.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/neovov/Fullscreen-API-Polyfill/issues"

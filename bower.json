@@ -4,10 +4,10 @@
   "homepage": "https://github.com/neovov/Fullscreen-API-Polyfill",
   "license": "MIT",
   "authors": [
-    "Nicolas Le Gall"
+    "Nicolas Le Gall <me@neovov.com>"
   ],
   "contributors": [
-    "Nicolas Le Gall",
+    "Nicolas Le Gall <me@neovov.com>",
     "Stephen Mathieson <me@stephenmathieson.com>",
     "Norman Paschke <norman.paschke@dmk-ebusiness.de>",
     "Guillaume Amat <guillaume@amat.io>"
