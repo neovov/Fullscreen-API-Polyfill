@@ -2,7 +2,7 @@
   "name": "fullscreen-api-polyfill",
   "version": "1.0.0",
   "description": "W3C's Fullscreen API Polyfill",
-  "main": "fullscreen-api-polyfill.js",
+  "main": "fullscreen-api-polyfill.min.js",
   "repository": {
     "type": "git",
     "url": "git+https://neovov@github.com/neovov/Fullscreen-API-Polyfill.git"
@@ -17,5 +17,10 @@
   "bugs": {
     "url": "https://github.com/neovov/Fullscreen-API-Polyfill/issues"
   },
-  "homepage": "https://github.com/neovov/Fullscreen-API-Polyfill#readme"
+  "homepage": "https://github.com/neovov/Fullscreen-API-Polyfill#readme",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.3",
+    "grunt-contrib-uglify": "^0.11.0"
+  }
 }

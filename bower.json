@@ -13,7 +13,7 @@
     "Guillaume Amat <guillaume@amat.io>"
   ],
   "main": [
-      "fullscreen-api-polyfill.js"
+      "fullscreen-api-polyfill.min.js"
   ],
   "ignore": [
       "LICENSE.txt",
