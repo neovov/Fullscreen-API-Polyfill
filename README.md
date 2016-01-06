@@ -10,7 +10,7 @@ Maybe an example will be clearer:
 			element.requestFullscreen();
 		} else if (element.mozRequestFullScreen) { // Mozilla current API
 			element.mozRequestFullScreen();
-		} else if (webkitRequestFullScreen) { // Webkit current API
+		} else if (element.webkitRequestFullScreen) { // Webkit current API
 			element.webkitRequestFullScreen();
 		}
 	}, false);
