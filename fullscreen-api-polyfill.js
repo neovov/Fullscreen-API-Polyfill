@@ -1,5 +1,5 @@
 (function ( doc ) {
-	// Use JavaScript script mode
+	// Use JavaScript strict mode
 	"use strict";
 
 	/*global Element */
