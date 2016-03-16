@@ -20,7 +20,7 @@
 				}
 			},
 			webkit: {
-				enabled: "webkitIsFullScreen",
+				enabled: "webkitFullscreenEnabled",
 				element: "webkitCurrentFullScreenElement",
 				request: "webkitRequestFullScreen",
 				exit:    "webkitCancelFullScreen",
