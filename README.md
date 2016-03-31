@@ -1,6 +1,6 @@
 # W3C's Fullscreen API Polyfill
 
-This little script ease the way to use the fullscreen API. As you know, vendors are currently implementing this API so every methods, properties and events are prefixed. This script will detect the API (maybe an already compliant browser? Webkit? Moz?) and if it's not the W3C one, it will wrap those methods, properties and events to match the W3C one.
+This little script ease the way to use the [fullscreen API](https://fullscreen.spec.whatwg.org/). As you know, vendors are currently implementing this API so every methods, properties and events are prefixed. This script will detect the API (maybe an already compliant browser? Webkit? Moz?) and if it's not the W3C one, it will wrap those methods, properties and events to match the W3C one.
 
 Maybe an example will be clearer:
 
@@ -34,6 +34,7 @@ Note that this script does only wrap the existing methods, it will not simulate 
  * Events propagation for `fullscreenchange` and `fullscreenerror`
  * You can easily change the vendor's API (if they change a method, property or event name)
  * You can choose to "pollute" the DOM by making these wrappers or don't "pollute" and get the API available in the browser (or `undefined` if unavailable)
+ * `requestFullscreen` and `exitFullscreen` will return a `Promise` (if supported).
 
 Calling `element.requestFullscreen` will call the correct method (`requestFullscreen`, `mozRequestFullScreen` or `webkitRequestFullScreen`).  
 Calling `document.exitFullscreen` will call the correct method (`exitFullscreen`, `mozCancelFullScreen` or `webkitCancelFullScreen`).
