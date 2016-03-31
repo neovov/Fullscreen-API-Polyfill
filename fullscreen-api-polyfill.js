@@ -2,7 +2,7 @@
 	// Use JavaScript strict mode
 	"use strict";
 
-	/*global Element */
+	/*global Element, Promise */
 
 	var pollute = true,
 		api,
@@ -81,6 +81,32 @@
 		dispatch( w3.events.error, e.target );
 	} // end of handleError()
 
+	// Prepare a resolver to use for the requestFullscreen and exitFullscreen's promises
+	// Use a closure since we need to check which method was used
+	function createResolver(method) {
+		return function resolver(resolve, reject) {
+			// Reject the promise if asked to exitFullscreen and there is no element currently in fullscreen
+			if (method === w3.exit && !doc[api.element]) {
+				return reject(new TypeError());
+			}
+
+			// When receiving an internal fullscreenchange event, fulfill the promise
+			function change() {
+				resolve();
+				doc.removeEventListener(api.events.change, change, false);
+			}
+
+			// When receiving an internal fullscreenerror event, reject the promise
+			function error() {
+				reject(new TypeError());
+				doc.removeEventListener(api.events.error, error, false);
+			}
+
+			doc.addEventListener(api.events.change, change, false);
+			doc.addEventListener(api.events.error,  error,  false);
+		};
+	}
+
 	// Pollute only if the API doesn't already exists
 	if (pollute && !(w3.enabled in doc) && api) {
 		// Add listeners for fullscreen events
@@ -92,11 +118,15 @@
 		doc[w3.element] = doc[api.element];
 
 		// Match the reference for exitFullscreen
-		doc[w3.exit] = doc[api.exit];
+		doc[w3.exit] = function() {
+			var result = doc[api.exit]();
+			return !result && Promise ? new Promise(createResolver(w3.exit)) : result;
+		};
 
 		// Add the request method to the Element's prototype
 		Element.prototype[w3.request] = function () {
-			return this[api.request].apply( this, arguments );
+			var result = this[api.request].apply( this, arguments );
+			return !result && Promise ? new Promise(createResolver(w3.request)) : result;
 		};
 	}
 

@@ -1,6 +1,6 @@
 {
   "name": "fullscreen-api-polyfill",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "W3C's Fullscreen API Polyfill",
   "main": "fullscreen-api-polyfill.min.js",
   "repository": {
