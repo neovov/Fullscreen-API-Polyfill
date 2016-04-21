@@ -87,7 +87,10 @@
 		return function resolver(resolve, reject) {
 			// Reject the promise if asked to exitFullscreen and there is no element currently in fullscreen
 			if (method === w3.exit && !doc[api.element]) {
-				return reject(new TypeError());
+				setTimeout(function() {
+					reject(new TypeError());
+				}, 1);
+				return;
 			}
 
 			// When receiving an internal fullscreenchange event, fulfill the promise
