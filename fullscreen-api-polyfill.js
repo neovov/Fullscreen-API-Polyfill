@@ -70,6 +70,9 @@
 	} // end of dispatch()
 
 	function handleChange( e ) {
+		e.stopPropagation();
+		e.stopImmediatePropagation();
+
 		// Recopy the enabled and element values
 		doc[w3.enabled] = doc[api.enabled];
 		doc[w3.element] = doc[api.element];
