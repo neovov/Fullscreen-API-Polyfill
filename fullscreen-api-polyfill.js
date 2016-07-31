@@ -126,13 +126,13 @@
 		// Match the reference for exitFullscreen
 		doc[w3.exit] = function() {
 			var result = doc[api.exit]();
-			return !result && Promise ? new Promise(createResolver(w3.exit)) : result;
+			return !result && window.Promise ? new Promise(createResolver(w3.exit)) : result;
 		};
 
 		// Add the request method to the Element's prototype
 		Element.prototype[w3.request] = function () {
 			var result = this[api.request].apply( this, arguments );
-			return !result && Promise ? new Promise(createResolver(w3.request)) : result;
+			return !result && window.Promise ? new Promise(createResolver(w3.request)) : result;
 		};
 	}
 
